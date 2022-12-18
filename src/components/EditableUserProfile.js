@@ -25,12 +25,16 @@ export default function EditableUserProfile({
 
     console.log("Edit User Profile");
 
-    const [name, setName] = useState(stored.name);
-    const [month, setMonth] = useState(stored.month);
-    const [day, setDay] = useState(stored.day);
-    const [color, setColor] = useState(stored.color);
+    const [UserName, setUserName] = useState(stored.id);
+    const [DisplayName, setDisplayName] =useState(stored.DisplayName)
+    const [Dateofbirth, setDateofbirth] =useState(stored.Dateofbirth)
+    const [Address, setAddress] = useState(stored.Address);
+    const [email, setEmail] = useState(stored.email);
+    // const [month, setMonth] = useState(stored.month);
+    // const [day, setDay] = useState(stored.day);
+    // const [color, setColor] = useState(stored.color);
 
-    const maxDay = months.getMaxDays(month);
+    // const maxDay = months.getMaxDays(month);
 
     function handleCancelClicked() {
         editCompleteCallback(null);
@@ -38,56 +42,61 @@ export default function EditableUserProfile({
 
     function handleSaveClicked() {
         console.log("Saved");
-        editCompleteCallback({name, month, day, color});
+        // editCompleteCallback({name, month, day, color});
+        editCompleteCallback({Dateofbirth, Address, email});
     }
 
-    useEffect(() => {
-        setDay(bound(day, 1, maxDay));
-    }, [month]);
+    // useEffect(() => {
+    //     setDay(bound(day, 1, maxDay));
+    // }, [month]);
 
-    const buttonStyle = {
-        backgroundColor: color,
-        color: calcButtonTextColor(color)
-    };
+    // const buttonStyle = {
+    //     backgroundColor: color,
+    //     color: calcButtonTextColor(color)
+    // };
 
-    calcButtonTextColor(color);
+    // calcButtonTextColor(color);
 
     return <>
         <Group>            
-            <h2>Name:</h2>
+            <h2>Address:</h2>
             <input
                 type='text'
-                value={name}
-                onChange={e => setName(e.target.value)}
+                value={Address}
+                onChange={e => setAddress(e.target.value)}
             />            
         </Group>
         <Group>            
             <h2>Birthday:</h2>            
             
-            <select
+            {/* <select
                 value={month}
                 onChange={e => setMonth(bound(e.target.value, 0, 11))}
             >
                 {renderMonthOptions()}
-            </select>
-            <input
+            </select> */}
+            {/* <input
                 type='number'
                 value={day}
                 onChange={e => setDay(bound(e.target.value, 1, maxDay))}
-                style={{width: "50px"}}
-            />
+                style={{width: "50px"}} */}
+            {/* /> */}
         </Group>
         <Group>            
-            <h2>Favourite Color:</h2>
+            <h2>Email:</h2>
             <input
-                type="color"
-                value={color}
-                onChange={e => setColor(e.target.value)}
+                type="text"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
             />
         </Group>
         <Group>
-            <button style={buttonStyle} onClick={handleSaveClicked}>Save</button>
-            <button style={buttonStyle} onClick={handleCancelClicked}>Cancel</button>
+             <button onClick={handleSaveClicked}>Save</button>
+             <button onClick={handleCancelClicked}>Cancel</button>  
+               
+
+            {/* <button style={buttonStyle} onClick={handleSaveClicked}>Save</button>
+            <button style={buttonStyle} onClick={handleCancelClicked}>Cancel</button> */}
         </Group>
     </>
 }

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import EditableUserProfile from './EditableUserProfile';
+// import Userprofile from './UserProfile'
 import './style.css'
 import {useNavigate} from 'react-router-dom';
 
@@ -46,11 +47,14 @@ function RegistrationForm() {
         console.log(email)
         console.log(password)
         console.log(confirmPassword)
-        // const navigate = useNavigate();
+        if(password != confirmPassword)
+        alert('not same password')
+        else
         navigate('/', {replace: true});
         }
     return(
       <div className="form">
+        <h1>hi</h1>
           <div className="form-body">
               <div className="UserName">
                   <label className="form__label" for="id">User Name </label>
