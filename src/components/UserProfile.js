@@ -21,7 +21,7 @@ export default function UserProfile({
         const fetchData = async () =>{
         //   setLoading(true);
           try {
-            const {data: response} = await axios.get('/stuff/to/fetch');
+            const {data: response} = await axios.get('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/');
             // URL updation
             setUserProfile(response);
           } catch (error) {
