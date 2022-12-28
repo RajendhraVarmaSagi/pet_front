@@ -43,7 +43,7 @@ export default function EditableUserProfile({
     function handleSaveClicked() {
         console.log("Saved");
         // editCompleteCallback({name, month, day, color});
-        editCompleteCallback({Dateofbirth, Address, email});
+        editCompleteCallback({DisplayName, Dateofbirth, Address, email});
     }
 
     // useEffect(() => {
@@ -58,6 +58,15 @@ export default function EditableUserProfile({
     // calcButtonTextColor(color);
 
     return <>
+        
+        <Group>            
+            <h2>DisplayName:</h2>
+            <input
+                type='text'
+                value={DisplayName}
+                onChange={e => setAddress(e.target.value)}
+            />            
+        </Group>
         <Group>            
             <h2>Address:</h2>
             <input
@@ -67,7 +76,7 @@ export default function EditableUserProfile({
             />            
         </Group>
         <Group>            
-            <h2>Birthday:</h2>            
+            <h2>Dateofbirth:</h2>            
             
             {/* <select
                 value={month}

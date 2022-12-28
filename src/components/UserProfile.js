@@ -21,9 +21,10 @@ export default function UserProfile({
         const fetchData = async () =>{
         //   setLoading(true);
           try {
-            const {data: response} = await axios.get('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/');
+            const {data: response} = await axios.get('https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/profile/');
             // URL updation
-            setUserProfile(response);
+            setUserProfile(response[0]);
+            console.log(response[0]);
           } catch (error) {
             console.error(error.message);
           }
@@ -36,25 +37,25 @@ export default function UserProfile({
 
     return <div>
         <Group>
-            <h2>Name:</h2>
+            <h2>Name:</h2> {Userprofiledata._id}
         </Group>
         <Group>
-            <h2>UserName:</h2>
+            <h2>UserName:</h2>{Userprofiledata.displayName}
         </Group>
         <Group>
-            <h2>Dateofbirth:</h2>
+            <h2>Dateofbirth:{Userprofiledata.dateOfBirth}</h2>
         </Group>
         <Group>
-            <h2>Address:</h2> 
+            <h2>Address:</h2> {Userprofiledata.address}
         </Group>
         <Group>
-            <h2>Email:</h2> 
+            <h2>Email:</h2> {Userprofiledata.email}
         </Group>
         <Group>
-            <h2>Followers:</h2> 
+            <h2>Followers:</h2>
         </Group>
         <Group>
-            <h2>Following:</h2> 
+            <h2>Following:</h2>
         </Group>
         <Group>
             <button

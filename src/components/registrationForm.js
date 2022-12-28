@@ -14,6 +14,7 @@ function RegistrationForm() {
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
     const navigate = useNavigate();
+    const [current_user_data, set_current_user_data] = useState({});
 
     function inputtypehandler(event){
         let{id,value}=event.target
@@ -57,12 +58,14 @@ function RegistrationForm() {
                     param_data.append('username', UserName)
                     param_data.append('password', password)
                     console.log(param_data)
-                    const {access_token}= await axios.post('https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/auth/login',param_data);
-                    localStorage.setItem('auth_token', access_token);
-                    const create_profile_response= await axios.post(`https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/profile/${access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:Dateofbirth,address:Address,petsList:""});
+                    const {data}= await axios.post('https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/auth/login',param_data);
+                    console.log(data, new Date(Dateofbirth).toISOString())
+                    localStorage.setItem('auth_token', data.access_token);
+                    const create_profile_response= await axios.post(`https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/profile/${data.access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:new Date(Dateofbirth).toISOString(),address:Address,petsList:[]});
                     // const create_profile_response= await axios.post('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/{token', {username:UserName, password:password});
+                    set_current_user_data(create_profile_response.data)
                     // URL updation
-                    console.log(signup_response);
+                    console.log(signup_response, create_profile_response);
                     // console.log(login_response);
                   } catch (error) {
                     console.error(error.message);

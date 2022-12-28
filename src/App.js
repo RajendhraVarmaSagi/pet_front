@@ -13,14 +13,14 @@ function App() {
       // <Router>
       <div className="App">
         <Header/>
+        <h3>Login screen</h3>
         {/* <Register/> */}
         {/* <RegistrationForm/> */}
         {/* <h2>Welcome to React Router Tutorial</h2> */}
-        <h2></h2>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="navbar-nav mr-auto">
           {/* <li><Link to={'/'} className="nav-link"> Home </Link></li> */}
-          <li><Link to={'/Register'} className="nav-link">New User Register</Link></li>
+          <li><Link to={'/Register'} className="nav-link">Register</Link></li>
           <li><Link to={'/Userprofile'} className="nav-link">Profile</Link></li>
           {/* <li><Link to={'/about'} className="nav-link">About</Link></li> */}
         </ul>
