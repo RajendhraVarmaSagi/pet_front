@@ -53,15 +53,15 @@ function RegistrationForm() {
         alert('Password not matching...Please check the password you have entered')
         else{
                   try {
-                    const signup_response= await axios.post('https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/auth/signup', {username:UserName, password:password});
+                    const signup_response= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/signup', {username:UserName, password:password});
                     const param_data=new URLSearchParams()
                     param_data.append('username', UserName)
                     param_data.append('password', password)
                     console.log(param_data)
-                    const {data}= await axios.post('https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/auth/login',param_data);
+                    const {data}= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/login',param_data);
                     console.log(data, new Date(Dateofbirth).toISOString())
                     localStorage.setItem('auth_token', data.access_token);
-                    const create_profile_response= await axios.post(`https://95c7-2601-441-4200-d9a0-d4cb-4754-283e-c57f.ngrok.io/profile/${data.access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:new Date(Dateofbirth).toISOString(),address:Address,petsList:[]});
+                    const create_profile_response= await axios.post(`https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/profile/${data.access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:new Date(Dateofbirth).toISOString(),address:Address,petsList:[]});
                     // const create_profile_response= await axios.post('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/{token', {username:UserName, password:password});
                     set_current_user_data(create_profile_response.data)
                     // URL updation
