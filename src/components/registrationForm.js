@@ -4,6 +4,7 @@ import EditableUserProfile from './EditableUserProfile';
 import './style.css'
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import validator from 'validator';
 
 function RegistrationForm() {
     const [UserName, setUserName] = useState(null);
@@ -15,6 +16,16 @@ function RegistrationForm() {
     const [confirmPassword,setConfirmPassword] = useState(null);
     const navigate = useNavigate();
     const [current_user_data, set_current_user_data] = useState({});
+    const [emailError, setEmailError] = useState('')
+
+    const validateEmail = (e) => {
+  
+    if (validator.isEmail(e)) {
+      setEmailError('Valid Email :)')
+    } else {
+      setEmailError('Enter valid Email!')
+    }
+}
 
     function inputtypehandler(event){
         let{id,value}=event.target
@@ -32,7 +43,8 @@ function RegistrationForm() {
             setAddress(value)
         }
         else if(id=="email"){
-            setEmail(value)
+            setEmail(value);
+            validateEmail(value);
         }
         else if(id=="password"){
             setPassword(value)
@@ -51,6 +63,8 @@ function RegistrationForm() {
         console.log(confirmPassword)
         if(password != confirmPassword)
         alert('Password not matching...Please check the password you have entered')
+        else if(emailError === "Enter valid Email!")
+        alert('Enter Valid E-mail')
         else{
                   try {
                     const signup_response= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/signup', {username:UserName, password:password});
@@ -60,17 +74,24 @@ function RegistrationForm() {
                     console.log(param_data)
                     const {data}= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/login',param_data);
                     console.log(data, new Date(Dateofbirth).toISOString())
-                    localStorage.setItem('auth_token', data.access_token);
+                    sessionStorage.setItem('auth_token', data.access_token);
                     const create_profile_response= await axios.post(`https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/profile/${data.access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:new Date(Dateofbirth).toISOString(),address:Address,petsList:[]});
                     // const create_profile_response= await axios.post('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/{token', {username:UserName, password:password});
                     set_current_user_data(create_profile_response.data)
+                    alert('');
+                    console.log(create_profile_response);
+                    // Put the object into storage
+                    sessionStorage.setItem('testObject', JSON.stringify(create_profile_response.data));
                     // URL updation
                     console.log(signup_response, create_profile_response);
                     // console.log(login_response);
+                    navigate('/login', {replace: true});
+                    alert("New user is created");
                   } catch (error) {
                     console.error(error.message);
+                    alert(error);
                   }
-        navigate('/', {replace: true});
+        
         }
         }
     return(
@@ -79,15 +100,15 @@ function RegistrationForm() {
           <div className="form-body">
               <div className="UserName">
                   <label className="form__label" for="id">User Name </label>
-                  <input onChange={inputtypehandler} className="form__input" type="text" id="id" placeholder="Username"/>
+                  <input onChange={inputtypehandler} className="form__input" type="text" id="id" placeholder="Username" required/>
               </div>
               <div className="DisplayName">
                   <label className="form__label" for="DisplayName">Display name </label>
-                  <input  onChange={inputtypehandler} type="text" name="" id="DisplayName"  className="form__input"placeholder="DisplayName"/>
+                  <input  onChange={inputtypehandler} type="text" name="" id="DisplayName"  className="form__input"placeholder="DisplayName" required/>
               </div>
               <div className="Dateofbirth">
                 <label className="form__label" for="Dateofbirth">Date of Birth</label>
-                <input onChange={inputtypehandler} type="date" id="Dateofbirth" name="" className="form__input" min="1900-01-01" max="2022-12-31"></input>
+                <input onChange={inputtypehandler} type="date" id="Dateofbirth" name="" className="form__input" min="1900-01-01" max="2022-12-31" required/>
               </div>
               <div className="Address">
                   <label className="form__label" for="Address">Address </label>
@@ -95,15 +116,15 @@ function RegistrationForm() {
               </div>
               <div className="email">
                   <label className="form__label" for="email">Email </label>
-                  <input onChange={inputtypehandler} type="email" id="email" className="form__input" placeholder="Email"/>
+                  <input onChange={inputtypehandler} type="email" id="email" className="form__input" placeholder="Email" required/>
               </div>
               <div className="password">
                   <label className="form__label" for="password">Password </label>
-                  <input onChange={inputtypehandler} className="form__input" type="password"  id="password" placeholder="Password"/>
+                  <input onChange={inputtypehandler} className="form__input" type="password"  id="password" placeholder="Password" required/>
               </div>
               <div className="confirm-password">
                   <label className="form__label" for="confirmPassword">Confirm Password </label>
-                  <input onChange={inputtypehandler} className="form__input" type="password" id="confirmPassword" placeholder="Confirm Password"/>
+                  <input onChange={inputtypehandler} className="form__input" type="password" id="confirmPassword" placeholder="Confirm Password" required/>
               </div>
           </div>
           <div class="footer">

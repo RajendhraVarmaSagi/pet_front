@@ -18,6 +18,11 @@ export default function UserProfile({
     // };
 
     useEffect(() => {
+        const data=JSON.parse(sessionStorage.getItem('testObject'))
+    setUserProfile(data)
+    },[sessionStorage.getItem('testObject')]);
+    
+    useEffect(() => {
         const fetchData = async () =>{
         //   setLoading(true);
           try {
@@ -32,6 +37,7 @@ export default function UserProfile({
         }
     
         fetchData();
+        
       }, []);
     
 
@@ -43,20 +49,20 @@ export default function UserProfile({
             <h2>UserName:</h2>{Userprofiledata.displayName}
         </Group>
         <Group>
-            <h2>Dateofbirth:{Userprofiledata.dateOfBirth}</h2>
+            <h2>Dateofbirth:</h2>{Userprofiledata.dateOfBirth}
         </Group>
         <Group>
             <h2>Address:</h2> {Userprofiledata.address}
         </Group>
-        <Group>
+        {/* <Group>
             <h2>Email:</h2> {Userprofiledata.email}
-        </Group>
-        <Group>
+        </Group> */}
+        {/* <Group>
             <h2>Followers:</h2>
         </Group>
         <Group>
             <h2>Following:</h2>
-        </Group>
+        </Group> */}
         <Group>
             <button
                 // style={buttonStyle}

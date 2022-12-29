@@ -3,12 +3,19 @@ import './App.css';
 import Header from './components/header';
 import Userprofile from './components/UserProfile'
 import RegistrationForm from './components/registrationForm'
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { Component, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import Register from './components/Register';
 // import { Routes } from 'react-router-dom';
 
+function userprofile() {
+  // Get the userId param from the URL.
+  let { id } = useParams();
+  // ...
+}
+
 function App() {
+  const [current_user_data, set_current_user_data] = useState({});
     return (
       // <Router>
       <div className="App">
@@ -29,6 +36,7 @@ function App() {
         <Routes>
             {/* <Route exact path='/' component={Home} /> */}
             <Route path='/Register' element={<RegistrationForm/>} />
+            {/* <Route path='/Userprofile' element={<Userprofile/>} /> */}
             <Route path='/Userprofile' element={<Userprofile/>} />
             {/* <Route path='/about' component={About} /> */}
         </Routes>
