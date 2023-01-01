@@ -3,20 +3,20 @@ import Group from './Group';
 import { months, calcButtonTextColor } from '../tools';
 import React, { Component } from 'react';
 
-function renderMonthOptions() {
-    return months.getMonths().map( (m, i) => {
-        return <option
-            key={i}
-            value={i}
-        >
-            {m.shortName}
-        </option>
-    });
-}
+// function renderMonthOptions() {
+//     return months.getMonths().map( (m, i) => {
+//         return <option
+//             key={i}
+//             value={i}
+//         >
+//             {m.shortName}
+//         </option>
+//     });
+// }
 
-function bound(value, floor, ceil) {
-    return Math.min(ceil, Math.max(value, floor));
-}
+// function bound(value, floor, ceil) {
+//     return Math.min(ceil, Math.max(value, floor));
+// }
 
 export default function EditableUserProfile({
     stored,
@@ -29,7 +29,7 @@ export default function EditableUserProfile({
     const [DisplayName, setDisplayName] =useState(stored.DisplayName)
     const [Dateofbirth, setDateofbirth] =useState(stored.Dateofbirth)
     const [Address, setAddress] = useState(stored.Address);
-    const [email, setEmail] = useState(stored.email);
+    // const [email, setEmail] = useState(stored.email);
     // const [month, setMonth] = useState(stored.month);
     // const [day, setDay] = useState(stored.day);
     // const [color, setColor] = useState(stored.color);
@@ -43,7 +43,7 @@ export default function EditableUserProfile({
     function handleSaveClicked() {
         console.log("Saved");
         // editCompleteCallback({name, month, day, color});
-        editCompleteCallback({DisplayName, Dateofbirth, Address, email});
+        editCompleteCallback({DisplayName, Dateofbirth, Address});
     }
 
     // useEffect(() => {
@@ -91,21 +91,21 @@ export default function EditableUserProfile({
                 style={{width: "50px"}} */}
             {/* /> */}
         </Group>
-        <Group>            
+        {/* <Group>            
             <h2>Email:</h2>
             <input
                 type="text"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
             />
-        </Group>
+        </Group> */}
         <Group>
              <button onClick={handleSaveClicked}>Save</button>
              <button onClick={handleCancelClicked}>Cancel</button>  
                
 
-            {/* <button style={buttonStyle} onClick={handleSaveClicked}>Save</button>
-            <button style={buttonStyle} onClick={handleCancelClicked}>Cancel</button> */}
+            <button onClick={handleSaveClicked}>Save</button>
+            <button onClick={handleCancelClicked}>Cancel</button>
         </Group>
     </>
 }
