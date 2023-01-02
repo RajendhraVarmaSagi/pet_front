@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("https://static.vecteezy.com/system/resources/previews/002/486/289/original/gradient-background-instagram-free-vector.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.border-bottom {
+  border-bottom: 2px solid rgb(218, 220, 221);
+}
+
+.border-top {
+  border-top: 2px solid rgb(218, 220, 221);
+}
+
+.p-tb {
+  padding: 10px 0;
+}
+
+.px {
+  padding: 0 9px 0 0;
+}
+
+.container {
+  background-color: rgb(246, 248, 247);
+}
+
+.center-content-in-window {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 80px;
+}
+
+.icon-color {
+  color: rgb(80, 75, 75);
+  font-size: 22px;
+}
+
+/* FEED SECTION */
+.feed-header,
+.follow-left-section {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+.profile-image {
+  height: 40px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.feed-header > .username > a {
+  text-decoration: none;
+}
+
+.feed-image > img {
+  width: 100%;
+  height: 450px;
+}
+
+.caption {
+  padding: 0 10px;
+}
+
+.caption > p {
+  text-align: justify;
+}
+
+/* FOLLOWERS */
+.follow {
+  /* min-height: 100vh; */
+}
+
+.full-height {
+  min-height: 100vh !important;
+}
+
+.follow-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fullName {
+  color: rgb(111, 117, 123);
+}
+
+/* BUTTON */
+.btn {
+  width: 100px;
+  padding: 8px 20px;
+  border: 1px solid rgb(189, 181, 181);
+  border-radius: 4px;
+}
+
+/* LOGIN FORM CSS */
+.form-section {
+  padding: 15px;
+}
+
+.form-section > .section-1 {
+  padding: 15px;
+  background-color: #fff;
+}
+
+form > input[type="text"],
+form > input[type="password"] {
+  width: 98.2%;
+  height: 35px;
+  border: 1px solid rgb(217, 216, 216);
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  height: 35px;
+  border: 1px solid rgb(217, 216, 216);
+  border-radius: 4px;
+}
+
+form > input[type="text"] {
+  margin: 0 0 5px 0;
+  padding: 0 0 0 5px;
+}
+
+form > input[type="password"] {
+  margin: 0 0 10px 0;
+  padding: 0 0 0 5px;
+}
+
+form > button {
+  color: #fff;
+  background-color: #3d8fd8;
+}
+.forgot {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forgot > a {
+  color: #2c87c3;
+  text-decoration: none;
+}
+
+/* FOOTER SECTION */
+.full-height {
+  /* position: relative;
+  left: 100px; */
+}
+
+.footer-section > div {
+  /* width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0; */
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container {
+    margin: 0 0px;
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3), -4px 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+  .logo-section {
+    width: 88%;
+    text-align: center !important;
+  }
+
+  .icons {
+    width: 12%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container {
+    margin: 0 50px;
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3), -4px 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-section {
+    width: 88%;
+    text-align: center !important;
+  }
+
+  .icons {
+    width: 12%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .container {
+    margin: 0 150px;
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3), -4px 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+  .logo-section {
+    width: 88%;
+    text-align: center !important;
+  }
+
+  .icons {
+    width: 12%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    margin: 0 200px;
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3), -4px 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-section {
+    width: 88%;
+    text-align: center !important;
+  }
+
+  .icons {
+    width: 12%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container {
+    margin: 0 480px;
+    box-shadow: 4px 0 4px 0 rgba(0, 0, 0, 0.3), -4px 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-section {
+    width: 88%;
+    text-align: center !important;
+  }
+
+  .icons {
+    width: 12%;
+  }
+}
