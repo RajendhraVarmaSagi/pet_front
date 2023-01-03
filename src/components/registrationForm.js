@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import EditableUserProfile from './EditableUserProfile';
+import React, {useState, useEffect} from 'react';
+//import EditableUserProfile from './EditableUserProfile';
 // import Userprofile from './UserProfile'
 import './style.css'
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 function RegistrationForm() {
     const [UserName, setUserName] = useState(null);
@@ -13,6 +14,7 @@ function RegistrationForm() {
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
     const navigate = useNavigate();
+    const [current_user_data, set_current_user_data] = useState({});
 
     function inputtypehandler(event){
         let{id,value}=event.target
@@ -39,7 +41,7 @@ function RegistrationForm() {
             setConfirmPassword(value)
         }
     }
-    function register(event){
+    async function register(event){
         console.log(UserName)
         console.log(DisplayName)
         console.log(Dateofbirth)
@@ -48,13 +50,32 @@ function RegistrationForm() {
         console.log(password)
         console.log(confirmPassword)
         if(password != confirmPassword)
-        alert('not same password')
-        else
+        alert('Password not matching...Please check the password you have entered')
+        else{
+                  try {
+                    const signup_response= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/signup', {username:UserName, password:password});
+                    const param_data=new URLSearchParams()
+                    param_data.append('username', UserName)
+                    param_data.append('password', password)
+                    console.log(param_data)
+                    const {data}= await axios.post('https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/auth/login',param_data);
+                    console.log(data, new Date(Dateofbirth).toISOString())
+                    localStorage.setItem('auth_token', data.access_token);
+                    const create_profile_response= await axios.post(`https://2976-2601-441-4200-d9a0-10da-6d62-ae9a-4d95.ngrok.io/profile/${data.access_token}`, {uid:UserName, displayName:DisplayName,dateOfBirth:new Date(Dateofbirth).toISOString(),address:Address,petsList:[]});
+                    // const create_profile_response= await axios.post('https://2c71-2601-441-4200-d9a0-e106-da45-a7de-c8c2.ngrok.io/profile/{token', {username:UserName, password:password});
+                    set_current_user_data(create_profile_response.data)
+                    // URL updation
+                    console.log(signup_response, create_profile_response);
+                    // console.log(login_response);
+                  } catch (error) {
+                    console.error(error.message);
+                  }
         navigate('/', {replace: true});
+        }
         }
     return(
       <div className="form">
-        <h1>hi</h1>
+        <h1>New User Registration</h1>
           <div className="form-body">
               <div className="UserName">
                   <label className="form__label" for="id">User Name </label>

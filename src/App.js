@@ -6,6 +6,7 @@ import RegistrationForm from './components/registrationForm'
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Register from './components/Register';
+import LoginForm from './components/Login/LoginForm';
 // import { Routes } from 'react-router-dom';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       // <Router>
       <div className="App">
         <Header/>
+        <h3>Login screen</h3>
         {/* <Register/> */}
         {/* <RegistrationForm/> */}
         {/* <h2>Welcome to React Router Tutorial</h2> */}
@@ -29,6 +31,7 @@ function App() {
             {/* <Route exact path='/' component={Home} /> */}
             <Route path='/Register' element={<RegistrationForm/>} />
             <Route path='/Userprofile' element={<Userprofile/>} />
+            <Route path='/Login'        element={<LoginForm/>}/>
             {/* <Route path='/about' component={About} /> */}
         </Routes>
       </div>
